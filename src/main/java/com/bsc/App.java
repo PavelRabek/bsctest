@@ -68,9 +68,11 @@ public class App {
 				
 				switch (command) {
 				case "help":
+					System.out.println("*************************");
 					System.out.println("Available commands:");
-					System.out.println("quit (terminates program)");
-					System.out.println("CURRENCY_CODE INT_VALUE (to enter payment, e.g. USD 25)");
+					System.out.println(" quit (terminates program)");
+					System.out.println(" CURRENCY_CODE INT_VALUE (to enter payment, e.g. USD 25)");
+					System.out.println("*************************");
 					break;
 					
 				case "quit":
@@ -80,7 +82,7 @@ public class App {
 					try {
 						payments.addPayment(command);
 					} catch (IllegalArgumentException e) {
-						System.err.println(e.getMessage());
+						System.err.println("Invalid command, type help");
 					}
 				}
 			}
