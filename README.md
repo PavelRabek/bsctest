@@ -2,7 +2,7 @@
 BSC test
 
 Instructions:
-- Java version 8 is needed to run this test application.
+- Java version 8 is needed to run this test application (some of its features are used in code)
 - Project uses maven to build and optionaly run the application.
 - You can build the application by typing the following command into console (tests are performed too):
   - `mvn package`
@@ -14,5 +14,6 @@ Instructions:
 
 Assumptions:
 - If the user enters invalid input, error message is displayed, but program keeps running.
+- Currency is supposed to have 3 chars.
 - When handling batch payments (via -f parameter), all misleading lines are ignored.
 - Exchange rates are defined in properties file within application resources for simplicity (src\main\resources\usdConversionRates.properties)
