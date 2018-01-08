@@ -25,7 +25,7 @@ public class PaymentsImpl implements Payments {
 	
 	private static final NumberFormat DECIMAL_FORMATTER = DecimalFormat.getInstance(Locale.ENGLISH);
 	
-	private ConcurrentHashMap<String, Long> paymentMap = new ConcurrentHashMap<>();
+	private ConcurrentHashMap<String, Long> amountMap = new ConcurrentHashMap<>();
 	private ConcurrentHashMap<String, Double> conversionMap = new ConcurrentHashMap<>();
 	
 	public PaymentsImpl() {
@@ -35,7 +35,7 @@ public class PaymentsImpl implements Payments {
 	@Override
 	public void addPayment(String currency, Long value) {
 		// thread safe and thread consistent value update
-		paymentMap.merge(currency, value, (oldVal, newVal) -> oldVal + newVal);
+		amountMap.merge(currency.toUpperCase(), value, (oldVal, newVal) -> oldVal + newVal);
 	}
 	
 	@Override
@@ -76,12 +76,12 @@ public class PaymentsImpl implements Payments {
 	
 	@Override
 	public List<String> getAllCurrencies() {
-		return Collections.list(paymentMap.keys());
+		return Collections.list(amountMap.keys());
 	}
 	
 	@Override
 	public Long getValue(String currency) {
-		return paymentMap.get(currency);
+		return amountMap.get(currency);
 	}
 	
 	@Override
@@ -91,7 +91,7 @@ public class PaymentsImpl implements Payments {
 	
 	@Override
 	public String getPaymentsReport() {
-		return paymentMap.entrySet().stream()
+		return amountMap.entrySet().stream()
 			.filter(entry -> entry.getValue() > 0)
 			.map(entry -> {
 				StringBuilder sb = new StringBuilder();

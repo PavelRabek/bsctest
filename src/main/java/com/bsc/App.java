@@ -39,6 +39,7 @@ public class App {
 				payments.addPayments(fileStream);
 			} catch (IOException e) {
 				e.printStackTrace();
+				System.exit(1);
 			}
 		}
 		

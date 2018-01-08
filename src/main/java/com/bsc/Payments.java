@@ -19,12 +19,14 @@ public interface Payments {
 	
 	/**
 	 * Adds payment in form of input command: CURRENCY_CODE INT_VALUE (e.g. USD 25).
+	 * Throws IllegalArgumentException if incorrent format is given. 
 	 * @param payment
 	 */
 	void addPayment(String payment);
 	
 	/**
 	 * Adds several payments as a stream of input commands.
+	 * Any incorrect payment is ignored.
 	 * @param payments
 	 */
 	void addPayments(Stream<String> payments);
